@@ -11,11 +11,17 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-TODO
+node version 16.0.0+
+npm version 9.0.0+
+vite 3.0.0+
 
 ### Installation
 
-TODO
+Run these commands in the terminal.
+
+  1. `cd bookstore`
+  2. `npm install`
+  3. `npm run dev`
 
 <!-- CONTRIBUTING -->
 ## Contributing
