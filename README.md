@@ -11,9 +11,9 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 
-node version 16.0.0+
-npm version 9.0.0+
-vite 3.0.0+
+* node version 16.0.0+
+* npm version 9.0.0+
+* vite 3.0.0+
 
 ### Installation
 
@@ -32,9 +32,9 @@ For this project we like to follow **conventional commits**
 you can read more [here](https://www.conventionalcommits.org/en/v1.0.0/). Please keep commit history linear and squash commits when necessary.
 
 1. Clone the Project (`git clone git@github.com:abu271/bookstore.git`)
-2. Create your Feature Branch (`git checkout -b feat/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'feat: Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+2. Create your Feature Branch (`git checkout -b feat/amazing-feature`)
+3. Commit your Changes (`git commit -m 'feat: Add some amazing-feature'`)
+4. Push to the Branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
 <!-- LICENSE -->
