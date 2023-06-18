@@ -28,6 +28,8 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: "16.x"
+      - name: Install vite globally
+        run: npm install --global vite
       - name: Build app
         run: npm install |
              npm run build
