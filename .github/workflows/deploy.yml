@@ -22,16 +22,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [16.x, 18.x]
-
     steps:
       - name: Build app
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ matrix.node-version }}
-      - run: npm run build
+        run: npm install |
+             npm run build
       - name: Docker login
         env: 
           DOCKER_USER: ${{secrets.DOCKER_USER}}
