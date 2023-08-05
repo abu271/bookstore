@@ -30,9 +30,10 @@ jobs:
           node-version: "16.x"
       - name: Install vite globally
         run: npm install --global vite
-      - name: Build app
-        run: npm install |
-             npm run build
+      - name: Install dependencies
+        run: npm install
+      - name: Build
+        run: npm run build
       - name: Docker login
         env: 
           DOCKER_USER: ${{secrets.DOCKER_USER}}
