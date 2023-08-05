@@ -40,7 +40,7 @@ jobs:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
       - name: Build Docker image
-        run: docker build -t bookstore:(cat package.json | jq -r '.version') .  
+        run: docker build -t bookstore:$(jq -r .version package.json) .  
       - name: Upload Docker image to Docker Hub
         run: docker push ${{secrets.DOCKER_USER}}/abudev:bookstore
 
