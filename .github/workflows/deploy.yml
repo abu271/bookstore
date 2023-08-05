@@ -39,10 +39,13 @@ jobs:
         with:
           username: ${{secrets.DOCKER_USER}}
           password: ${{secrets.DOCKER_PASSWORD}}
+      - name: Extract version and set it to TAG env var
+        run: |
+          echo "TAG=$(jq -r '.version' package.json)" >> $GITHUB_ENV
       - name: Build Docker image
-        run: docker build -t bookstore:$(jq -r .version package.json) .  
+        run: docker build -t bookstore:${{env.TAG}} .  
       - name: Upload Docker image to Docker Hub
-        run: docker push ${{secrets.DOCKER_USER}}/abudev:bookstore
+        run: docker push bookstore:${{env.TAG}} 
 
   # deploy:
     # name: Deploy
