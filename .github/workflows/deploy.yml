@@ -2,7 +2,7 @@ name: Bookstore Build & Deployment
 # ---= Deploy =---
 # 1. provide manual option to deploy to PROD
 # 2. use shell commands or script to ssh to selected server
-# 3. copy over the compose file and startup containers
+# 3. copy over the compose file and startup containers - compose file would contain postgres, api and bookstore images
 
 on:
   push:
@@ -38,9 +38,9 @@ jobs:
       - name: Build Docker image
         run: |
             docker build -t bookstore_v${{ env.TAG }} .
-            docker tag bookstore_v${{ env.TAG }} ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
+            docker tag bookstore_v${{ env.TAG }} ${{ secrets.DOCKER_USER }}/octo:bookstore_v${{ env.TAG }}
       - name: Upload Docker image to Docker Hub
-        run: docker push ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
+        run: docker push ${{ secrets.DOCKER_USER }}/octo:bookstore_v${{ env.TAG }}
 
   # deploy:
   #   name: Deploy to PROD
