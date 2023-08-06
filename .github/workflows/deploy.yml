@@ -37,7 +37,7 @@ jobs:
           echo "TAG=$(jq -r '.version' package.json)" >> $GITHUB_ENV
       - name: Build Docker image
         run: |
-            docker build -t bookstore:${{ env.TAG }} .
+            docker build -t bookstore_v${{ env.TAG }} .
             docker tag bookstore_v${{ env.TAG }} ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
       - name: Upload Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
