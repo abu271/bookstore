@@ -1,13 +1,6 @@
-name: Bookstore Build & Deploy
-
-# ---= Build =---
-# 1. build frontend code via vite
-# 2. create docker image for frontend code via dockerfile
-# 3. publish docker image to private repo
-# 4. define book website & api images in compose file
-
+name: Bookstore Build & Deployment
 # ---= Deploy =---
-# 1. provide manual option to deploy to QA or PROD
+# 1. provide manual option to deploy to PROD
 # 2. use shell commands or script to ssh to selected server
 # 3. copy over the compose file and startup containers
 
@@ -37,41 +30,38 @@ jobs:
       - name: Docker login
         uses: docker/login-action@v2
         with:
-          username: ${{secrets.DOCKER_USER}}
-          password: ${{secrets.DOCKER_PASSWORD}}
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
       - name: Extract version and set it to TAG env var
         run: |
           echo "TAG=$(jq -r '.version' package.json)" >> $GITHUB_ENV
       - name: Build Docker image
         run: |
-            docker build -t bookstore:${{env.TAG}} .
-            docker tag bookstore:${{env.TAG}} ${{secrets.DOCKER_USER}}/abudev:bookstore_v${{env.TAG}}
+            docker build -t bookstore:${{ env.TAG }} .
+            docker tag bookstore_v${{ env.TAG }} ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
       - name: Upload Docker image to Docker Hub
-        run: docker push ${{secrets.DOCKER_USER}}/abudev:bookstore_v${{env.TAG}}
+        run: docker push ${{ secrets.DOCKER_USER }}/abudev:bookstore_v${{ env.TAG }}
 
   # deploy:
-    # name: Deploy
-    # needs: build
-    # runs-on: ubuntu-latest
-    # if: github.ref == 'refs/heads/main'
+  #   name: Deploy to PROD
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main'
 
-    # steps:
-    #   - name: Deploy to QA
-    #     uses: actions/download-artifact@v3
-    #     with:
-    #       name: production-files
-    #       path: ./dist
+  #   steps:
+  #   - name: Deploy to Production
+  #     uses: fifsky/ssh-action@master
+  #     with:
+  #       command: |
+  #         git pull origin master
+  #         cd /home/thor/apps/Portfolio-website/.github/workflows
 
-    #   - name: Deploy to Production
-    #     environment: PROD
-    #     steps:
-    #       - uses: actions/checkout@v3
-    #       - name: copy file via ssh password
-    #         uses: appleboy/scp-action@v0.1.4
-    #         with:
-    #           host: ${{ secrets.HOST }}
-    #           username: ${{ secrets.USERNAME }}
-    #           password: ${{ secrets.PASSWORD }}
-    #           port: ${{ secrets.PORT }}
-    #           source: "docker/docker-compose.yml"
-    #           target: /home/thor/apps/bookstore
+  #         npm ci
+  #         npm run build
+
+  #         pm2 stop ../../ecosystem.config.js
+  #         pm2 start ../../ecosystem.config.js
+
+  #       host: ${{ secrets.HOST }}
+  #       user: ${{ secrets.USERNAME }}
+  #       key: ${{ secrets.SSH_KEY }}
