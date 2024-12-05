@@ -6,9 +6,7 @@ name: Bookstore Build & Deployment
 
 on:
   push:
-    branches:
-      - main
-      - misc/pipeline-setup
+    branches: [ main, misc/pipeline-setup]
 
 jobs:
   build:
