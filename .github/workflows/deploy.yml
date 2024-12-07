@@ -1,12 +1,7 @@
 name: Bookstore Build & Deployment
-# ---= Deploy =---
-# 1. provide manual option to deploy to PROD
-# 2. use shell commands or script to ssh to selected server
-# 3. copy over the compose file and startup containers - compose file would contain postgres, api and bookstore images
-
 on:
   push:
-    branches: [ main, misc/pipeline-setup]
+    branches: [ main ]
 
 jobs:
   build:
@@ -39,27 +34,3 @@ jobs:
             docker tag bookstore_v${{ env.TAG }} ${{ secrets.DOCKER_USER }}/octo:bookstore_v${{ env.TAG }}
       - name: Upload Docker image to Docker Hub
         run: docker push ${{ secrets.DOCKER_USER }}/octo:bookstore_v${{ env.TAG }}
-
-  # deploy:
-  #   name: Deploy to PROD
-  #   needs: build
-  #   runs-on: ubuntu-latest
-  #   if: github.ref == 'refs/heads/main'
-
-  #   steps:
-  #   - name: Deploy to Production
-  #     uses: fifsky/ssh-action@master
-  #     with:
-  #       command: |
-  #         git pull origin master
-  #         cd /home/thor/apps/Portfolio-website/.github/workflows
-
-  #         npm ci
-  #         npm run build
-
-  #         pm2 stop ../../ecosystem.config.js
-  #         pm2 start ../../ecosystem.config.js
-
-  #       host: ${{ secrets.HOST }}
-  #       user: ${{ secrets.USERNAME }}
-  #       key: ${{ secrets.SSH_KEY }}
