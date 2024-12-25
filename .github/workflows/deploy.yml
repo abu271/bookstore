@@ -1,7 +1,7 @@
 name: Bookstore Build & Deployment
 on:
   push:
-    branches: [ main, ops/deployment-pipeline ]
+    branches: [ main ]
 
 jobs:
   build:
