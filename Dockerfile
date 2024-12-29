@@ -1,8 +1,8 @@
 FROM node:lts-alpine
 WORKDIR /app
 
-COPY package.json ./
-COPY package-lock.json ./
+COPY package.json package-lock.json ./
+COPY src/ vite.config.js index.html ./
 
 RUN npm install
 RUN npm run build
