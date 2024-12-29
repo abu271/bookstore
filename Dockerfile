@@ -2,10 +2,11 @@ FROM node:lts-alpine
 WORKDIR /app
 
 COPY package.json package-lock.json /
-COPY / /
+COPY . .
 
 # Change ownership to the current user
 RUN chown -R node:node /app /node_modules
+RUN chmod -R 755 /app /node_modules
 USER node
 
 RUN npm install
