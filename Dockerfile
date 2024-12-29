@@ -9,8 +9,8 @@ RUN npm run build
 FROM node:lts-alpine
 COPY ./package*.json ./
 COPY --from=build /app/dist dist
+
 RUN npm install -g http-server
 
 EXPOSE 3004
-
 CMD [ "npm", "start" ]

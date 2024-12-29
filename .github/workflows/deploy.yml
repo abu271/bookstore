@@ -1,47 +1,47 @@
 name: Bookstore Build & Deployment
 on:
   push:
-    branches: [ main ]
+    branches: [ main, fix/pipeline ]
 
 jobs:
   build:
-    name: Build
-    runs-on: ubuntu-latest
+    # name: Build
+    # runs-on: ubuntu-latest
 
-    steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with: 
-          node-version: "20.x"
-      - name: Install vite globally
-        run: npm install --global vite
-      - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      # upload artifacts
-      - name: Upload math result for job 1
-        uses: actions/upload-artifact@v4
-        with:
-          name: bookstore-artifact
-          path: |
-            ./
-            Dockerfile
-            package.json
-          retention-days: 1
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - name: Use Node.js
+    #     uses: actions/setup-node@v4
+    #     with: 
+    #       node-version: "20.x"
+    #   - name: Install vite globally
+    #     run: npm install --global vite
+    #   - name: Install dependencies
+    #     run: npm install
+    #   - name: Build
+    #     run: npm run build
+    #   # upload artifacts
+    #   - name: Upload math result for job 1
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: bookstore-artifact
+    #       path: |
+    #         ./
+    #         Dockerfile
+    #         package.json
+    #       retention-days: 1
 
   push_docker:
     name: Push to Docker Hub
     runs-on: ubuntu-latest
-    needs: build
+    # needs: build
     
     steps:
       # download artifacts
-      - name: Download artifact from Build
-        uses: actions/download-artifact@v4
-        with:
-          name: bookstore-artifact
+      # - name: Download artifact from Build
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: bookstore-artifact
       - name: Docker login
         uses: docker/login-action@v2
         with:
