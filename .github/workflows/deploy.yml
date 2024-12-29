@@ -4,7 +4,7 @@ on:
     branches: [ main, fix/pipeline ]
 
 jobs:
-  build:
+  # build:
     # name: Build
     # runs-on: ubuntu-latest
 
