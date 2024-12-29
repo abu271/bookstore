@@ -1,14 +1,11 @@
-FROM node:18-alpine3.17 AS build
+FROM node:lts-alpine
 WORKDIR /app
 COPY ./ /app
 
 RUN npm install
 RUN npm run build
 
-
-FROM node:lts-alpine
-COPY ./package*.json ./
-COPY --from=build /app/dist dist
+COPY dist dist
 
 RUN npm install -g http-server
 
