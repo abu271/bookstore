@@ -1,16 +1,17 @@
-FROM node:18-alpine3.17 AS build
+FROM node:lts-alpine
 WORKDIR /app
-COPY ./ /app
+
+COPY package.json package-lock.json /
+COPY . .
+# Bypass EACCES error in Github actions
+RUN npm install esbuild --ignore-scripts
 
 RUN npm install
 RUN npm run build
 
+COPY dist dist
 
-FROM node:lts-alpine
-COPY ./package*.json ./
-COPY --from=build /app/dist dist
 RUN npm install -g http-server
 
 EXPOSE 3004
-
 CMD [ "npm", "start" ]

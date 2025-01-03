@@ -27,6 +27,7 @@ jobs:
           name: bookstore-artifact
           path: |
             ./
+            dist
             Dockerfile
             package.json
           retention-days: 1
