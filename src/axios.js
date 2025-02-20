@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export const bookApi = axios.create({
-  baseURL: "http://localhost:8000",
+  baseURL: import.meta.env.VITE_BOOK_API_URL,
   timeout: 5000
 });
