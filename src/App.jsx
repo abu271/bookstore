@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { bookApi } from './axios';
-import { Book } from './Book';
+import { Book } from './components/book/Book';
 
 async function getBooks() {
   try {
