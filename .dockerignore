@@ -4,6 +4,7 @@ Dockerfile
 docker-compose.yml
 README.md
 LICENSE
+dist
 .git
 .gitignore
 .vscode

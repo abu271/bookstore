@@ -1,7 +1,7 @@
 name: Bookstore Build & Deployment
 on:
   push:
-    branches: [ main ]
+    branches: [ main, grit-62 ]
 
 jobs:
   build:
