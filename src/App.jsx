@@ -23,7 +23,7 @@ function App() {
   return (
     <>
       <div>
-        {books ? books : 'Loading...'}
+        {books ? books : 'Loading books... Grab a cup of coffee! ☕'}
       </div>
     </>
   );
