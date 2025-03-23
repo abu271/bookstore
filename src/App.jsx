@@ -5,6 +5,8 @@ import { Book } from './components/book/Book';
 
 async function getBooks() {
   try {
+    console.log(`ENV BOOK URL ${import.meta.env.VITE_BOOK_API_URL}`);
+    console.log(`Base URL ${bookApi.defaults.baseURL}`);
     const {data} = await bookApi.get('/api/book/books/');
     const list = data.map(book => <Book key={book.book_id} {...book} />);
     return list;
