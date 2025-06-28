@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { bookApi } from './axios';
-import { Book } from './components/book/Book';
+import { Book } from './pages/Book';
 
 async function getBooks() {
   try {
     console.log(`ENV BOOK URL ${import.meta.env.VITE_BOOK_API_URL}`);
     console.log(`Base URL ${bookApi.defaults.baseURL}`);
-    const {data} = await bookApi.get('/api/book/books/');
+    const {data} = await bookApi.get('/api/v1/books/');
     const list = data.map(book => <Book key={book.book_id} {...book} />);
     return list;
   } catch (error) {

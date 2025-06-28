@@ -48,6 +48,36 @@ Conventional Commits is a specification for adding human and machine-readable me
 
 For more details, visit the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/) website.
 
+## Project Folder Structure
+
+To help you get familiar with the codebase, here’s a quick overview of the main folders and files in this project:
+
+```
+bookstore/
+├── public/                 # Static files (favicon, index.html, etc.)
+├── src/                    # Main source code for the app
+│   ├── assets/             # Images, fonts, and other static assets
+│   ├── components/         # Reusable UI components (e.g., buttons, forms)
+│   ├── hooks/              # Custom React hooks for logic reuse
+│   ├── pages/              # Page-level components (e.g., Home, Login, Book)
+│   ├── App.jsx             # Main React component
+│   ├── axios.js            # Axios instance and API configuration
+│   └── main.jsx            # Entry point for the React app
+├── .gitignore              # Files and folders to ignore in git
+├── package.json            # Project dependencies and scripts
+├── README.md               # Project documentation (this file)
+└── vite.config.js          # Vite configuration
+```
+
+**Key Points:**
+- All your React code lives in the `src/` folder.
+- Use the `components/` folder for small, reusable UI pieces.
+- Place custom hooks in the `hooks/` folder to keep logic organised and reusable.
+- Each main page (like Login or Book details) goes in the `pages/` folder.
+- The `App.jsx` file is the root component that ties everything together.
+
+This structure helps keep the project organised and easy to maintain as it grows.
+
 <!-- LICENSE -->
 ## License
 
